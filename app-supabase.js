@@ -150,6 +150,7 @@
     }
     if (roomsResult.data) {
       window.GOC_CTU_PUBLIC_DATA.rooms = roomsResult.data;
+      window.GOC_CTU_RECHECK_ROOM_RESULT?.();
       window.GOC_CTU_RECHECK_ROOM_MAP?.();
     }
   }
