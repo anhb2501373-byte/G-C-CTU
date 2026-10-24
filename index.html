@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 66248)
+Total output lines: 2514
+
 <!DOCTYPE html>
 
 <html lang="vi">
@@ -992,263 +995,7 @@ draw();
 .balance-label{margin-top:22px;color:#c4e7d9;font-size:13px;display:flex;align-items:center;gap:10px;letter-spacing:.025em}.eye-btn{border:1px solid #ffffff55;background:#ffffff15;color:#fff;border-radius:9px;width:34px;height:30px;display:grid;place-items:center;font-size:16px}.balance{min-height:1.35em}
 .summary-card{background:#fff;padding:16px 17px;border:1px solid #e2eee7;box-shadow:0 5px 16px #061d1110}.summary-card small{font-size:15px;font-weight:750;display:flex;align-items:center;gap:7px}.summary-card strong{font-size:clamp(20px,3.5vw,25px);margin-top:7px}.income-card,.income-card small,.income-card strong{color:#167447}.expense-card,.expense-card small,.expense-card strong{color:#c53636}.summary-arrow{font-size:27px;line-height:1;font-weight:950;display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:#e7f8ee}.expense-card .summary-arrow{background:#fff0f0}.summary-card small{font-size:16px;letter-spacing:-.01em}.income-card strong{font-weight:850}.expense-card strong{font-weight:850}
 .nav{gap:10px}.nav button{font-size:15px;padding:14px 8px;min-height:52px;border-radius:14px;font-weight:800;letter-spacing:-.01em}.nav button.active{box-shadow:0 4px 12px #17634a12}.tx-icon.income-icon{background:#e5f8ed;color:#16804c}.tx-icon.expense-icon{background:#fff0f0;color:#c53636}.tx-right strong.green{color:#16804c}.tx-right strong.red{color:#c53636}
-.page-note{margin:18px 2px 0;padding:11px 13px;border-radius:10px;background:#fff8e8;border:1px solid #f3e4b7;color:#7c6426;font-size:12px;line-height:1.5}.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:22px;background:#111a16a8;z-index:1000}.modal-backdrop.show{display:flex}.test-modal{width:min(460px,100%);background:#c62828;color:#fff;border:1px solid #ffb7b7;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px #0007;text-align:center;animation:modalPop .18s ease-out}.test-modal-head{background:#c62828;color:#fff;padding:24px 20px 10px}.test-modal-head .warning-icon{font-size:34px;line-height:1.2;margin:0 auto 9px;width:48px;height:48px;display:grid;place-items:center;border:2px solid #ffffffa8;border-radius:50%;font-weight:900}.test-modal-head h3{margin:0;font-size:19px}.test-modal-body{padding:16px 22px 24px;background:#c62828;color:#fff}.test-modal-body p{margin:0 0 20px;line-height:1.7;font-weight:700;font-size:16px}.test-modal-body button{background:#fff;color:#b71c1c;border:0;border-radius:11px;padding:11px 22px;font-weight:800;min-width:120px}@keyframes modalPop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-@media(max-width:560px){.nav{gap:5px}.nav button{font-size:13px;padding:12px 3px;min-height:50px}.summary-card{padding:14px 12px}.summary-card small{font-size:14px}.summary-arrow{font-size:24px;width:26px;height:26px}.summary-card strong{font-size:20px}.balance-label{font-size:11px}.logo{width:51px;height:51px;flex-basis:51px}}
-
-
-/* Bố cục điện thoại: phần đầu gọn, khu vực nội dung ưu tiên nửa màn hình dưới */
-@media (max-width:560px){
-  html,body{min-height:100%;height:100%;overflow:hidden}
-  .wrap{height:100dvh;min-height:0;max-width:none;padding:8px 9px 8px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
-  .hero{flex:0 0 auto;padding:11px 13px 12px;border-radius:16px;box-shadow:0 3px 12px #173d2b12}
-  .brand{gap:9px}.logo{width:38px;height:38px;flex-basis:38px;border-radius:12px;font-size:22px}
-  .eyebrow{font-size:9px}.brand strong{font-size:13px}
-  .hero h1{font-size:19px;line-height:1.2;margin:8px 0 0}
-  .balance-label{font-size:9px;margin-top:7px;gap:7px}
-  .eye-btn{width:29px;height:25px;border-radius:8px;font-size:14px}
-  .balance{font-size:23px;line-height:1.15;margin:3px 0 9px;min-height:0}
-  .summary{gap:8px}.summary-card{padding:8px 10px;border-radius:12px}
-  .summary-card small{font-size:12px;gap:5px}.summary-arrow{font-size:18px;width:22px;height:22px;border-radius:7px}
-  .summary-card strong{font-size:17px;margin-top:3px}
-  #quickAdd{margin-top:8px;padding:8px 11px;font-size:12px;border-radius:10px}
-  .nav{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:0;padding:0}
-  .nav button{min-width:0;min-height:45px;padding:7px 2px;font-size:11px;line-height:1.15;border-radius:12px;background:#fff;border:1px solid #e1e9e4;box-shadow:0 2px 5px #173d2b08;white-space:nowrap}
-  .nav button.active{background:#d7f6e8;border-color:#9ad7b8;box-shadow:0 3px 9px #17634a12}
-  main{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column}
-  .page{display:none;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 0 5px}
-  .page.active{display:block;flex:1 1 auto}
-  .section-head{margin:5px 1px 8px;gap:8px}
-  .section-head h2{font-size:17px;line-height:1.2}
-  .section-head .muted{font-size:10px}
-  .card{padding:11px;border-radius:14px;margin-bottom:8px;box-shadow:0 2px 8px #173d2b08}
-  .card h3{font-size:14px;margin:0 0 8px}
-  #page-overview .card:first-of-type{min-height:0}
-  #budgetOverview{font-size:20px!important}
-  #page-overview .card:first-of-type .row{gap:7px}
-  #page-overview .card:first-of-type .row[style*=&quot;margin:18px&quot;]{margin:9px 0 6px!important}
-  #page-overview .card:first-of-type .row[style*=&quot;margin-top:12px&quot;]{margin-top:8px!important}
-  #page-overview .card:first-of-type button{margin-top:8px!important;padding:8px;font-size:12px}
-  #page-overview .card:nth-of-type(2){padding:10px}
-  #page-overview .card:nth-of-type(3){padding:10px}
-  .category-row{margin:8px 0}
-  .page-note{margin:7px 1px 0;padding:7px 9px;font-size:10px}
-  .footer{display:none}
-  .transaction{gap:8px;padding:9px 0}.tx-icon{width:34px;height:34px;font-size:17px;border-radius:10px}
-  .tx-main strong,.tx-right strong{font-size:12px}.tx-main small{font-size:10px}.tx-right{font-size:11px}
-  .filters{gap:5px;flex-wrap:wrap}.filters button{padding:7px 10px;font-size:11px}
-  .field{gap:4px;margin-bottom:9px}.field label{font-size:12px}
-  .field input,.field select,.search{padding:9px 10px;font-size:13px}
-  .formgrid{gap:8px}
-  .goal{padding:11px;margin:8px 0}
-}
-/* Nút điều hướng dạng chạm nhanh, vùng chạm rõ ràng */
-.nav button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.nav button:active{transform:scale(.98)}
-
-
-body.auth-loading .wrap, body.auth-locked .wrap { display: none !important; }
-body.auth-loading #authPanel, body.auth-locked #authPanel, body.ready #authPanel { display: block; }
-body.auth-locked #authSignedIn, body.auth-loading #authSignedIn { display: none !important; }
-body.ready #authFields { display: none !important; }
-body.ready #authSignedIn { display: flex !important; }
-.auth-panel { display: none; max-width: 680px; margin: 18px auto; padding: 16px; border: 1px solid #dfe7f3; border-radius: 14px; background: #fff; box-shadow: 0 8px 28px rgba(24, 48, 85, .08); font-family: inherit; }
-.auth-panel h2 { font-size: 18px; margin: 0 0 6px; }
-.auth-panel p { font-size: 13px; color: #64748b; margin: 0 0 12px; }
-.auth-fields { display: grid; gap: 9px; }
-.auth-fields input { min-width: 0; padding: 10px 12px; border: 1px solid #d7dfec; border-radius: 9px; font: inherit; }
-.auth-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-.auth-buttons button, #authSignOut { border: 0; border-radius: 9px; padding: 10px 14px; font: inherit; cursor: pointer; }
-#authSignIn { background: #0a5cb8; color: #fff; }
-#authSignUp, #authSignOut { background: #eef3f9; color: #163456; }
-#authStatus { min-height: 18px; color: #64748b; font-size: 13px; }
-#authSignedIn { align-items: center; justify-content: space-between; gap: 12px; }
-
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body class=&quot;auth-loading&quot;&gt;
-&lt;section class=&quot;auth-panel&quot; id=&quot;authPanel&quot; aria-live=&quot;polite&quot;&gt;
-  &lt;h2&gt;Đăng nhập để lưu dữ liệu riêng tư&lt;/h2&gt;
-  &lt;p&gt;Giao dịch, ngân sách và mục tiêu tiết kiệm được lưu theo tài khoản của bạn trong Supabase.&lt;/p&gt;
-  &lt;form id=&quot;authFields&quot; class=&quot;auth-fields&quot;&gt;
-    &lt;input id=&quot;authEmail&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; required maxlength=&quot;254&quot; placeholder=&quot;Email của bạn&quot;&gt;
-    &lt;input id=&quot;authPassword&quot; type=&quot;password&quot; autocomplete=&quot;current-password&quot; minlength=&quot;6&quot; required placeholder=&quot;Mật khẩu (ít nhất 6 ký tự)&quot;&gt;
-    &lt;div class=&quot;auth-buttons&quot;&gt;&lt;button id=&quot;authSignIn&quot; type=&quot;submit&quot;&gt;Đăng nhập&lt;/button&gt;&lt;button id=&quot;authSignUp&quot; type=&quot;button&quot;&gt;Tạo tài khoản&lt;/button&gt;&lt;/div&gt;
-  &lt;/form&gt;
-  &lt;div id=&quot;authSignedIn&quot;&gt;&lt;span id=&quot;authAccountLabel&quot; class=&quot;muted&quot;&gt;&lt;/span&gt;&lt;button id=&quot;authSignOut&quot; type=&quot;button&quot;&gt;Đăng xuất&lt;/button&gt;&lt;/div&gt;
-  &lt;div id=&quot;authStatus&quot;&gt;Đang kết nối dữ liệu an toàn…&lt;/div&gt;
-&lt;/section&gt;
-&lt;div class=&quot;wrap&quot;&gt;
-&lt;header class=&quot;hero&quot;&gt;
-  &lt;div class=&quot;brand&quot;&gt;&lt;div class=&quot;logo&quot; aria-label=&quot;Logo GÓC CTU&quot;&gt;&lt;span&gt;G&lt;/span&gt;&lt;i&gt;↗&lt;/i&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;GÓC CTU&lt;/strong&gt;&lt;div class=&quot;eyebrow&quot;&gt;Tài chính sinh viên&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;h1&gt;Chi tiêu thông minh hơn.&lt;/h1&gt;
-  &lt;div class=&quot;balance-label&quot;&gt;&lt;span&gt;SỐ DƯ THU CHI ĐÃ GHI NHẬN&lt;/span&gt;&lt;button id=&quot;toggleBalance&quot; class=&quot;eye-btn&quot; type=&quot;button&quot; aria-label=&quot;Ẩn số dư&quot; title=&quot;Ẩn/hiện số dư&quot;&gt;&lt;span id=&quot;eyeIcon&quot;&gt;◉&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;
-  &lt;div class=&quot;balance&quot; id=&quot;balance&quot;&gt;0 ₫&lt;/div&gt;
-  &lt;div class=&quot;summary&quot;&gt;
-    &lt;div class=&quot;summary-card income-card&quot;&gt;&lt;small&gt;&lt;span class=&quot;summary-arrow&quot;&gt;↗&lt;/span&gt; Tổng thu&lt;/small&gt;&lt;strong id=&quot;income&quot;&gt;0 ₫&lt;/strong&gt;&lt;/div&gt;
-    &lt;div class=&quot;summary-card expense-card&quot;&gt;&lt;small&gt;&lt;span class=&quot;summary-arrow&quot;&gt;↘&lt;/span&gt; Tổng chi&lt;/small&gt;&lt;strong id=&quot;expense&quot;&gt;0 ₫&lt;/strong&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;button class=&quot;primary&quot; id=&quot;quickAdd&quot;&gt;＋ Ghi giao dịch mới&lt;/button&gt;
-&lt;/header&gt;
-
-&lt;nav class=&quot;nav&quot; aria-label=&quot;Điều hướng&quot;&gt;
-  &lt;button class=&quot;active&quot; data-page=&quot;overview&quot;&gt;◫ Tổng quan&lt;/button&gt;
-  &lt;button data-page=&quot;transactions&quot;&gt;↕ Giao dịch&lt;/button&gt;
-  &lt;button data-page=&quot;budget&quot;&gt;◎ Ngân sách&lt;/button&gt;
-  &lt;button data-page=&quot;goals&quot;&gt;♧ Mục tiêu&lt;/button&gt;
-&lt;/nav&gt;
-
-&lt;main&gt;
-&lt;section class=&quot;page active&quot; id=&quot;page-overview&quot;&gt;
-  &lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Tổng quan tài chính&lt;/h2&gt;&lt;span class=&quot;muted&quot; id=&quot;monthLabel&quot;&gt;&lt;/span&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;div&gt;&lt;div class=&quot;muted&quot; style=&quot;font-size:13px&quot;&gt;Ngân sách tháng&lt;/div&gt;&lt;strong id=&quot;budgetOverview&quot; style=&quot;font-size:24px&quot;&gt;3.000.000 ₫&lt;/strong&gt;&lt;/div&gt;&lt;span style=&quot;font-size:28px&quot;&gt;◉&lt;/span&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot; style=&quot;margin:18px 0 8px;font-size:13px&quot;&gt;&lt;span id=&quot;spentLabel&quot;&gt;Đã chi: 0 ₫&lt;/span&gt;&lt;strong id=&quot;spentPercent&quot;&gt;0%&lt;/strong&gt;&lt;/div&gt;
-    &lt;div class=&quot;progress&quot;&gt;&lt;span id=&quot;budgetBar&quot;&gt;&lt;/span&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot; style=&quot;margin-top:12px;font-size:13px&quot;&gt;&lt;span class=&quot;muted&quot;&gt;Còn lại theo ngân sách&lt;/span&gt;&lt;strong id=&quot;budgetRemaining&quot;&gt;3.000.000 ₫&lt;/strong&gt;&lt;/div&gt;
-    &lt;button class=&quot;secondary&quot; style=&quot;margin-top:15px;width:100%&quot; data-goto=&quot;budget&quot;&gt;Điều chỉnh ngân sách&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Chi tiêu theo danh mục&lt;/h3&gt;&lt;div id=&quot;categoryChart&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;&lt;div class=&quot;row&quot;&gt;&lt;h3 style=&quot;margin:0&quot;&gt;Giao dịch gần đây&lt;/h3&gt;&lt;button class=&quot;secondary&quot; data-goto=&quot;transactions&quot;&gt;Xem tất cả&lt;/button&gt;&lt;/div&gt;&lt;div id=&quot;recentTransactions&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p class=&quot;page-note&quot;&gt;Tất cả số liệu đều mang tính chất minh họa và tham khảo.&lt;/p&gt;
-&lt;/section&gt;
-
-&lt;section class=&quot;page&quot; id=&quot;page-transactions&quot;&gt;
-  &lt;div class=&quot;section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Sổ thu chi&lt;/h2&gt;&lt;div class=&quot;muted&quot;&gt;Ghi lại từng khoản tiền hằng ngày&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;primary&quot; id=&quot;openForm&quot;&gt;＋ Thêm&lt;/button&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot; id=&quot;transactionFormCard&quot; hidden&gt;
-    &lt;h3&gt;Giao dịch mới&lt;/h3&gt;
-    &lt;div class=&quot;toggle&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;active&quot; data-type=&quot;Chi&quot;&gt;− Khoản chi&lt;/button&gt;&lt;button type=&quot;button&quot; data-type=&quot;Thu&quot;&gt;＋ Khoản thu&lt;/button&gt;&lt;/div&gt;
-    &lt;form id=&quot;transactionForm&quot;&gt;
-      &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;txName&quot;&gt;Nội dung giao dịch&lt;/label&gt;&lt;input id=&quot;txName&quot; required maxlength=&quot;100&quot; placeholder=&quot;Ví dụ: Ăn sáng, tiền trọ...&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;formgrid&quot;&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;txAmount&quot;&gt;Số tiền (VNĐ)&lt;/label&gt;&lt;input id=&quot;txAmount&quot; required type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; placeholder=&quot;50000&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;txCategory&quot;&gt;Danh mục&lt;/label&gt;&lt;select id=&quot;txCategory&quot;&gt;&lt;/select&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;formgrid&quot;&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;txDate&quot;&gt;Ngày giao dịch&lt;/label&gt;&lt;input id=&quot;txDate&quot; type=&quot;date&quot; required&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;txNote&quot;&gt;Ghi chú (không bắt buộc)&lt;/label&gt;&lt;input id=&quot;txNote&quot; maxlength=&quot;150&quot; placeholder=&quot;Ví dụ: ăn cùng bạn&quot;&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;row&quot;&gt;&lt;button class=&quot;secondary&quot; type=&quot;button&quot; id=&quot;cancelForm&quot;&gt;Hủy&lt;/button&gt;&lt;button class=&quot;primary&quot; type=&quot;submit&quot;&gt;Lưu giao dịch&lt;/button&gt;&lt;/div&gt;
-    &lt;/form&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;
-    &lt;input class=&quot;search&quot; id=&quot;searchTx&quot; placeholder=&quot;⌕ Tìm khoản thu chi...&quot;&gt;
-    &lt;div class=&quot;filters&quot; id=&quot;txFilters&quot;&gt;&lt;button class=&quot;active&quot; data-filter=&quot;Tất cả&quot;&gt;Tất cả&lt;/button&gt;&lt;button data-filter=&quot;Thu&quot;&gt;Khoản thu&lt;/button&gt;&lt;button data-filter=&quot;Chi&quot;&gt;Khoản chi&lt;/button&gt;&lt;/div&gt;
-    &lt;div id=&quot;transactionList&quot;&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;p class=&quot;page-note&quot;&gt;Tất cả số liệu đều mang tính chất minh họa và tham khảo.&lt;/p&gt;
-&lt;/section&gt;
-
-&lt;section class=&quot;page&quot; id=&quot;page-budget&quot;&gt;
-  &lt;div class=&quot;section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Ngân sách tháng&lt;/h2&gt;&lt;div class=&quot;muted&quot;&gt;Đặt giới hạn để chủ động chi tiêu&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;
-    &lt;form id=&quot;budgetForm&quot;&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;budgetInput&quot;&gt;Ngân sách tháng (VNĐ)&lt;/label&gt;&lt;input id=&quot;budgetInput&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;10000&quot; required&gt;&lt;/div&gt;&lt;button class=&quot;primary&quot; type=&quot;submit&quot;&gt;Lưu ngân sách&lt;/button&gt;&lt;/form&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Phân bổ tham khảo&lt;/h3&gt;&lt;p class=&quot;muted&quot; style=&quot;font-size:13px&quot;&gt;Gợi ý dựa trên ngân sách của bạn; không tự động trừ tiền.&lt;/p&gt;&lt;div id=&quot;budgetAllocation&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Gợi ý quản lý tiền&lt;/h3&gt;&lt;p&gt;Ưu tiên tiền nhà, ăn uống, đi lại và học tập trước. Dành một phần cho quỹ dự phòng rồi điều chỉnh chi tiêu giải trí theo số tiền còn lại.&lt;/p&gt;&lt;/div&gt;
-&lt;p class=&quot;page-note&quot;&gt;Tất cả số liệu đều mang tính chất minh họa và tham khảo.&lt;/p&gt;
-&lt;/section&gt;
-
-&lt;section class=&quot;page&quot; id=&quot;page-goals&quot;&gt;
-  &lt;div class=&quot;section-head&quot;&gt;&lt;div&gt;&lt;h2&gt;Mục tiêu tiết kiệm&lt;/h2&gt;&lt;div class=&quot;muted&quot;&gt;Để dành cho những điều bạn cần&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;primary&quot; id=&quot;addGoalBtn&quot;&gt;＋ Thêm&lt;/button&gt;&lt;/div&gt;
-  &lt;div class=&quot;card&quot; id=&quot;goalFormCard&quot; hidden&gt;&lt;h3&gt;Tạo mục tiêu&lt;/h3&gt;&lt;form id=&quot;goalForm&quot;&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;goalName&quot;&gt;Tên mục tiêu&lt;/label&gt;&lt;input id=&quot;goalName&quot; required maxlength=&quot;80&quot; placeholder=&quot;Ví dụ: Mua laptop&quot;&gt;&lt;/div&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;goalTarget&quot;&gt;Số tiền mục tiêu (VNĐ)&lt;/label&gt;&lt;input id=&quot;goalTarget&quot; required type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; placeholder=&quot;5000000&quot;&gt;&lt;/div&gt;&lt;button class=&quot;primary&quot; type=&quot;submit&quot;&gt;Tạo mục tiêu&lt;/button&gt;&lt;/form&gt;&lt;/div&gt;
-  &lt;div id=&quot;goalList&quot;&gt;&lt;/div&gt;
-&lt;p class=&quot;page-note&quot;&gt;Tất cả số liệu đều mang tính chất minh họa và tham khảo.&lt;/p&gt;
-&lt;/section&gt;
-&lt;/main&gt;
-&lt;div class=&quot;footer&quot;&gt;GÓC CTU · Tiện ích dành cho sinh viên&lt;br&gt;Dữ liệu được lưu trên trình duyệt của thiết bị này.&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;modal-backdrop&quot; id=&quot;testModal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;testModalTitle&quot;&gt;&lt;div class=&quot;test-modal&quot;&gt;&lt;div class=&quot;test-modal-head&quot;&gt;&lt;div class=&quot;warning-icon&quot;&gt;!&lt;/div&gt;&lt;h3 id=&quot;testModalTitle&quot;&gt;Thông báo phiên bản thử nghiệm&lt;/h3&gt;&lt;/div&gt;&lt;div class=&quot;test-modal-body&quot;&gt;&lt;p&gt;Bạn đang ở phiên bản thử nghiệm, sẽ được cập nhật sau khi hoàn thiện.&lt;/p&gt;&lt;button type=&quot;button&quot; id=&quot;closeTestModal&quot;&gt;Đã hiểu&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;toast&quot; id=&quot;toast&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-(()=&gt; {
-const cloud = window.supabase.createClient('https://vykvwnrriyeogodbjkzw.supabase.co', 'sb_publishable_yo8fXrvC8DgiEoLXr8VSQg_3zWyhgNO');
-let userId = null;
-let financeEmail = null;
-let loadingUserId = null;
-const currentMonthKey = () =&gt; { const d = new Date(); return String(d.getFullYear()) + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
-
-const $=s=&gt;document.querySelector(s);
-const money=n=&gt;new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(n||0);
-const today=()=&gt;{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-const dateLabel=s=&gt;{if(!s)return '';const d=new Date(s+'T12:00:00');return d.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'})};
-const esc=s=&gt;String(s??'').replace(/[&amp;&lt;&gt;&quot;']/g,c=&gt;({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','&quot;':'&amp;quot;',&quot;'&quot;:'&amp;#39;'}[c]));
-const seedTransactions=[
-{id:1,name:'Cơm trưa',cat:'Ăn uống',type:'Chi',amount:35000,date:today(),note:''},
-{id:2,name:'Cà phê học bài',cat:'Giải trí',type:'Chi',amount:25000,date:today(),note:''},
-{id:3,name:'Tiền làm thêm',cat:'Thu nhập',type:'Thu',amount:500000,date:today(),note:''},
-{id:4,name:'Xăng xe',cat:'Đi lại',type:'Chi',amount:60000,date:today(),note:''},
-{id:5,name:'Mua tài liệu',cat:'Học tập',type:'Chi',amount:80000,date:today(),note:''}
-];
-let transactions=[];
-let budget=3000000;
-let goals=[];
-let txType='Chi',txFilter='Tất cả';
-let balanceHidden=load('goctu_balance_hidden',false);
-function load(key,fallback){try{const x=localStorage.getItem(key);return x===null?fallback:JSON.parse(x)}catch{return fallback}}
-async function save(){
-  try { localStorage.setItem('goctu_balance_hidden', JSON.stringify(balanceHidden)); } catch {}
-  if (!userId) { toast('Đăng nhập để đồng bộ dữ liệu.'); return; }
-  try {
-    const transactionRows = transactions.map((t) =&gt; ({
-      id: String(t.id), user_id: userId, type: t.type === 'Thu' ? 'income' : 'expense',
-      category: t.cat || null, description: t.name, amount: Number(t.amount), date: t.date,
-      notes: t.note || null
-    }));
-    const oldTransactions = await cloud.from('transactions').select('id').eq('user_id', userId);
-    if (oldTransactions.error) throw oldTransactions.error;
-    const currentTransactionIds = new Set(transactionRows.map((row) =&gt; row.id));
-    const removedTransactions = (oldTransactions.data || []).map((row) =&gt; String(row.id)).filter((id) =&gt; !currentTransactionIds.has(id));
-    if (removedTransactions.length) {
-      const { error } = await cloud.from('transactions').delete().eq('user_id', userId).in('id', removedTransactions);
-      if (error) throw error;
-    }
-    if (transactionRows.length) {
-      const { error } = await cloud.from('transactions').upsert(transactionRows, { onConflict: 'id' });
-      if (error) throw error;
-    }
-    const { error: budgetError } = await cloud.from('budgets').upsert(
-      { user_id: userId, monthKey: currentMonthKey(), budget }, { onConflict: 'user_id,monthKey' }
-    );
-    if (budgetError) throw budgetError;
-
-    const goalRows = goals.map((goal) =&gt; ({ id: String(goal.id), user_id: userId, name: goal.name, target: Number(goal.target), saved: Number(goal.saved) }));
-    const oldGoals = await cloud.from('finance_goals').select('id').eq('user_id', userId);
-    if (oldGoals.error) throw oldGoals.error;
-    const currentGoalIds = new Set(goalRows.map((row) =&gt; row.id));
-    const removedGoals = (oldGoals.data || []).map((row) =&gt; String(row.id)).filter((id) =&gt; !currentGoalIds.has(id));
-    if (removedGoals.length) {
-      const { error } = await cloud.from('finance_goals').delete().eq('user_id', userId).in('id', removedGoals);
-      if (error) throw error;
-    }
-    if (goalRows.length) {
-      const { error } = await cloud.from('finance_goals').upsert(goalRows, { onConflict: 'id' });
-      if (error) throw error;
-    }
-    const state = document.getElementById('authStatus');
-    if (state) state.textContent = 'Đã đồng bộ riêng tư lên Supabase.';
-  } catch (error) {
-    const state = document.getElementById('authStatus');
-    if (state) state.textContent = 'Chưa đồng bộ được: ' + (error.message || 'lỗi kết nối');
-    toast('Lưu dữ liệu trực tuyến chưa thành công.');
-  }
-}
-function toast(msg){const el=$('#toast');el.textContent=msg;el.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=&gt;el.style.display='none',2600)}
-function sums(){return {income:transactions.filter(t=&gt;t.type==='Thu').reduce((s,t)=&gt;s+t.amount,0),expense:transactions.filter(t=&gt;t.type==='Chi').reduce((s,t)=&gt;s+t.amount,0)}}
-$('#toggleBalance').addEventListener('click',()=&gt;{balanceHidden=!balanceHidden;try{localStorage.setItem('goctu_balance_hidden',JSON.stringify(balanceHidden))}catch{};render()});
-function go(page){document.querySelectorAll('.nav button').forEach(b=&gt;b.classList.toggle('active',b.dataset.page===page));document.querySelectorAll('.page').forEach(p=&gt;p.classList.toggle('active',p.id==='page-'+page));if(page==='transactions')$('#txName').focus({preventScroll:true});}
-document.querySelectorAll('.nav button').forEach(b=&gt;b.addEventListener('click',()=&gt;go(b.dataset.page)));
-document.querySelectorAll('[data-goto]').forEach(b=&gt;b.addEventListener('click',()=&gt;go(b.dataset.goto)));
-$('#quickAdd').addEventListener('click',()=&gt;{go('transactions');$('#transactionFormCard').hidden=false;$('#txName').focus()});
-$('#openForm').addEventListener('click',()=&gt;{$('#transactionFormCard').hidden=false;$('#txName').focus()});
-function showTestModal(){$('#testModal').classList.add('show');$('#closeTestModal').focus()}
-function closeTestModal(){$('#testModal').classList.remove('show')}
-$('#closeTestModal').addEventListener('click',closeTestModal);
-$('#testModal').addEventListener('click',e=&gt;{if(e.target===$('#testModal'))closeTestModal()});
-document.addEventListener('keydown',e=&gt;{if(e.key==='Escape')closeTestModal()});
-$('#cancelForm').addEventListener('click',()=&gt;{$('#transactionFormCard').hidden=true;$('#transactionForm').reset()});
-document.querySelectorAll('[data-type]').forEach(b=&gt;b.addEventListener('click',()=&gt;{txType=b.dataset.type;document.querySelectorAll('[data-type]').forEach(x=&gt;x.classList.toggle('active',x===b));renderCategories()}));
-function renderCategories(){const list=txType==='Thu'?['Thu nhập','Gia đình hỗ trợ','Học bổng','Tiền thưởng','Khác']:['Ăn uống','Đi lại','Học tập','Nhà ở','Giải trí','Mua sắm','Y tế','Khác'];const old=$('#txCategory').value;$('#txCategory').innerHTML=list.map(c=&gt;`&lt;option&gt;${c}&lt;/option&gt;`).join('');if(list.includes(old))$('#txCategory').value=old}
+.page-note{margin:18px 2px 0;padding:11px 13px;border-radius:10px;background:#fff8e8;border:1px solid #f3e4b7;color:#7c6426;font-size:12px;line-height:1.5}.modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:22px;background:#111a16a8;z-index:1000}.modal-backdrop.show{display:flex}.test-modal{width:min(460px,100%);background:#c62828;color:#fff;border:1px …6248 tokens truncated…y').value;$('#txCategory').innerHTML=list.map(c=&gt;`&lt;option&gt;${c}&lt;/option&gt;`).join('');if(list.includes(old))$('#txCategory').value=old}
 $('#transactionForm').addEventListener('submit',e=&gt;{e.preventDefault();const name=$('#txName').value.trim(),amount=Number($('#txAmount').value);if(!name||!Number.isFinite(amount)||amount&lt;=0){toast('Vui lòng nhập nội dung và số tiền hợp lệ.');return}transactions.unshift({id:Date.now(),name,amount,cat:$('#txCategory').value,type:txType,date:$('#txDate').value||today(),note:$('#txNote').value.trim()});save();render();$('#transactionForm').reset();$('#txDate').value=today();$('#transactionFormCard').hidden=true;toast('Đã lưu giao dịch.')});
 $('#txFilters').addEventListener('click',e=&gt;{const b=e.target.closest('button[data-filter]');if(!b)return;txFilter=b.dataset.filter;$('#txFilters').querySelectorAll('button').forEach(x=&gt;x.classList.toggle('active',x===b));renderTransactions()});
 $('#searchTx').addEventListener('input',renderTransactions);
@@ -1582,7 +1329,7 @@ connectFinance();
       // Non-linear scale: 0–300,000 VNĐ uses 60% of the continuous track
       // for finer control over student-friendly prices; 300,000–1,000,000 uses 40%.
       // The slider remains a single uninterrupted range input.
-      range.min = '0'; range.max = '1000'; range.step = '1'; range.value = '0';
+      range.min = '0'; range.max = '1000'; range.step = '1'; range.value = range.max;
       rangeLabel.textContent = 'Mức giá';
       document.getElementById('priceRangeMinLabel').textContent = '0 VNĐ';
       maxLabel.textContent = max.toLocaleString('vi-VN') + ' VNĐ';
@@ -2234,7 +1981,7 @@ connectFinance();
     document.getElementById('distanceFilter').value = 'all';
     document.getElementById('priceFilter').value = 'all';
     chooseCategory('Nhà trọ');
-    document.getElementById('priceRange').value = '0';
+    document.getElementById('priceRange').value = document.getElementById('priceRange').max;
     updatePriceRangeValue();
     applyPlaceFilters();
   });
@@ -2509,5 +2256,6 @@ document.addEventListener('click', function(event) {
   stroke: #fff !important;
 }
 </style>
+
 
 
