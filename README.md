@@ -21,6 +21,14 @@ Website tiếng Việt dành cho sinh viên CTU, được cung cấp dưới d�
 
 `database/setup.sql` ghi lại cấu trúc dữ liệu và quyền truy cập đã thiết lập cho website; tệp này đã được áp dụng cho dự án Supabase GÓC CTU. Dữ liệu ban đầu gồm 11 địa điểm và 9 mục cẩm nang. `database/finalize.sql` gỡ chính sách tải ảnh tạm thời; chính sách này đã được gỡ khỏi dự án sau khi nạp ảnh.
 
+## Thêm sơ đồ dãy nhà
+
+1. Tải ảnh PNG/JPG lên **Storage → `goc-ctu-assets`** và sao chép URL công khai.
+2. Mở **Table Editor → `rooms`**. Với sơ đồ chung của một dãy, thêm dòng có `roomCode` là mã dãy (ví dụ `KL`) và dán URL vào `roomMapUrl`.
+3. Với sơ đồ theo tầng, thêm một dòng mỗi tầng. Ví dụ tầng 1 dãy ATL dùng `roomCode = ATL-F1`, `building = Nhà ATL`, `floor = 1`, cùng URL ảnh trong `roomMapUrl`.
+
+Website nhận các mã dãy hiện có như KL, C2, ATL và DI. Tìm riêng mã dãy sẽ hiện sơ đồ; tìm mã phòng như `ATL-301` hoặc `DI-101` sẽ chọn sơ đồ tầng tương ứng. Nếu dãy mới chưa có trong danh sách mã của website, cần cập nhật website thêm một lần.
+
 Các ảnh không được lưu trong GitHub vì website đọc ảnh từ bucket Supabase. Một số ảnh minh họa, bản đồ nhúng, biểu tượng và thư viện giao diện trong HTML gốc vẫn tải từ các địa chỉ bên ngoài.
 
 ## Gói miễn phí
@@ -34,3 +42,4 @@ GitHub Pages và Supabase Free không tính phí khi dùng trong hạn mức hi�
 ## Giới hạn nội dung
 
 Trang giữ cấu trúc và sơ đồ trong HTML gốc. Một số bản đồ nhúng, ảnh minh họa và thư viện giao diện vẫn đến từ dịch vụ bên ngoài. Hãy kiểm tra quyền sử dụng các nội dung đó trước khi quảng bá rộng.
+
