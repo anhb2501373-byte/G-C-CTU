@@ -1626,6 +1626,11 @@ connectFinance();
       showScreen('map');
       if (roomQuery) document.getElementById('roomSearch').value = input.toLocaleUpperCase('vi-VN').replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim();
       searchRoom();
+      toggleA3IndoorDirections();
+      syncA3IndoorRoute();
+      syncB1IndoorRoute();
+      syncKHIndoorRoute();
+      syncC1IndoorRoute();
       return;
     }
     if (/trọ|quán|cơm|ăn|dịch vụ|sửa xe|in ấn|mua sắm/.test(q)) {
