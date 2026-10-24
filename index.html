@@ -1726,9 +1726,14 @@ connectFinance();
     if (description) {
       result.className = 'room-result-panel mt-3 mb-0';
       // Giữ nguyên quy ước tầng hiện có: mã 3 chữ số lấy chữ số đầu; mã 4 chữ số lấy hai chữ số đầu.
-      let floor = null;
-      if (room && /^\d{3}$/.test(room)) floor = Number(room.charAt(0));
-      else if (room && /^\d{4}$/.test(room)) floor = Number(room.slice(0, 2));
+      const roomRows = window.GOC_CTU_PUBLIC_DATA?.rooms || [];
+      const roomKey = room ? building + '-' + room : '';
+      const roomRecord = roomKey
+        ? roomRows.find(row => String(row.roomCode || '').toUpperCase() === roomKey && row.roomNumber)
+        : null;
+      let floor = roomRecord?.floor ?? null;
+      if (floor === null && room && /^\d{3}$/.test(room)) floor = Number(room.charAt(0));
+      else if (floor === null && room && /^\d{4}$/.test(room)) floor = Number(room.slice(0, 2));
       const items = [];
       if (building) {
         items.push(['Nhà học', description]);
@@ -1736,11 +1741,7 @@ connectFinance();
           items.push(['Số phòng', room]);
           if (floor !== null) items.push(['Tầng', String(floor)]);
         }
-        const roomRows = window.GOC_CTU_PUBLIC_DATA?.rooms || [];
-        const roomKey = room ? building + '-' + room : '';
-        const roomParking = roomKey
-          ? roomRows.find(row => String(row.roomCode || '').toUpperCase() === roomKey && row.parking)
-          : null;
+        const roomParking = roomRecord?.parking ? roomRecord : null;
         const buildingParking = roomRows.find(row =>
           String(row.roomCode || '').toUpperCase().startsWith(building + '-') && row.parking
         );
