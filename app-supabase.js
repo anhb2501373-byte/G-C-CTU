@@ -148,7 +148,10 @@
       window.GOC_CTU_PUBLIC_DATA.handbook = handbookResult.data;
       renderHandbook(handbookResult.data);
     }
-    if (roomsResult.data) window.GOC_CTU_PUBLIC_DATA.rooms = roomsResult.data;
+    if (roomsResult.data) {
+      window.GOC_CTU_PUBLIC_DATA.rooms = roomsResult.data;
+      window.GOC_CTU_RECHECK_ROOM_MAP?.();
+    }
   }
 
   // Shared listing edits are made in Supabase Studio, never through an
@@ -157,3 +160,4 @@
   document.getElementById('rentalAdminModal')?.remove();
   loadPublicContent().catch(() => status('Không kết nối được Supabase; đang hiển thị nội dung có sẵn.', true));
 })();
+
