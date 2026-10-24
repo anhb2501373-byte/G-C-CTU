@@ -1,43 +1,36 @@
 # GÓC CTU
 
-Trang web tiếng Việt dành cho sinh viên CTU, triển khai dạng trang tĩnh.
+Website tiếng Việt dành cho sinh viên CTU, được cung cấp dưới dạng trang tĩnh.
 
-## Dữ liệu và quyền truy cập
+## Dịch vụ đang dùng
 
-- 28 ảnh trong gói ZIP được đưa vào bucket công khai `goc-ctu-assets` của Supabase. Bucket chỉ cho đọc công khai; quyền tải ảnh nặc danh được mở tạm thời lúc nạp ảnh rồi đóng lại.
-- Danh mục địa điểm, cẩm nang và danh mục ảnh được lưu trong Supabase (`places`, `handbook`, `site_assets`) và trang tải nội dung mới nhất khi mở.
-- Khu vực quản lý chi tiêu yêu cầu tài khoản email. Giao dịch, ngân sách và mục tiêu tiết kiệm nằm trong Supabase, được giới hạn theo `auth.uid()` bằng RLS. Mỗi người dùng chỉ đọc và sửa dữ liệu của tài khoản mình.
-- Nội dung chia sẻ chỉ đọc trên website. Chủ trang cập nhật địa điểm/cẩm nang qua Supabase Studio; website không mở quyền sửa công khai.
-- Mã trình duyệt chỉ dùng publishable key. Không đưa service-role/secret key vào trang công khai.
+- GitHub Pages phục vụ trang web công khai từ kho `anhb2501373-byte/G-C-CTU`.
+- Supabase lưu dữ liệu địa điểm, cẩm nang, danh mục ảnh và dữ liệu chi tiêu cá nhân.
+- 28 ảnh của website đã được đưa vào bucket công khai `goc-ctu-assets` trên Supabase. Ảnh chỉ cho đọc công khai; quyền tải nặc danh được gỡ sau khi nạp xong.
+- Tài khoản email bảo vệ khu vực chi tiêu. Giao dịch, ngân sách và mục tiêu tiết kiệm được giới hạn theo người dùng bằng RLS.
+- Website không cấp quyền cho khách truy cập sửa danh mục dùng chung. Trình duyệt chỉ chứa publishable key, không có khóa quản trị.
 
-## Xuất bản miễn phí bằng GitHub Pages
+## Bật GitHub Pages
 
-1. Tạo repository GitHub công khai tên `G-C-CTU`.
-2. Tải toàn bộ nội dung thư mục này lên nhánh `main`.
-3. Trong **Settings → Pages**, chọn triển khai từ nhánh `main`, thư mục `/ (root)`.
-4. URL dự kiến: `https://anhb2501373-byte.github.io/G-C-CTU/`.
-5. Trong Supabase, mở **Authentication → URL Configuration**. Đặt **Site URL** và thêm URL GitHub Pages ở trên vào **Redirect URLs** để email xác nhận tài khoản quay lại đúng trang.
-
-GitHub Pages miễn phí cho repository công khai. Tổ chức Supabase hiện đang dùng gói Free; hạn mức hiện tại gồm 500 MB cơ sở dữ liệu, 1 GB Storage và hạn mức băng thông theo trang giá. Gói Free có thể tự tạm dừng dự án khi gần như không có hoạt động trong 7 ngày. Vì vậy dịch vụ không thể bảo đảm lượng người dùng hoặc lưu lượng không giới hạn miễn phí; theo dõi hạn mức trước khi chia sẻ rộng.
-
-- [GitHub Pages trên GitHub Free](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
-- [Giá Supabase](https://supabase.com/pricing)
-- [Chính sách tạm dừng dự án Free](https://supabase.com/docs/guides/platform/free-project-pausing)
+1. Vào **Settings → Pages** của kho này.
+2. Chọn **Deploy from a branch**, nhánh `main`, thư mục `/ (root)`, rồi lưu.
+3. Trang sẽ có địa chỉ `https://anhb2501373-byte.github.io/G-C-CTU/`.
+4. Trong Supabase, mở **Authentication → URL Configuration**. Đặt URL ở trên làm **Site URL** và thêm nó vào **Redirect URLs** để xác nhận email quay lại đúng trang.
 
 ## Supabase
 
-`database/setup.sql` đã được áp dụng cho dự án Supabase GÓC CTU. Tệp tạo bảng danh mục ảnh, seed 11 địa điểm và 9 mục cẩm nang từ gói ZIP, thêm bảng mục tiêu tiết kiệm có RLS và bổ sung ghi chú giao dịch.
+`database/setup.sql` ghi lại cấu trúc dữ liệu và quyền truy cập đã thiết lập cho website; tệp này đã được áp dụng cho dự án Supabase GÓC CTU. Dữ liệu ban đầu gồm 11 địa điểm và 9 mục cẩm nang. `database/finalize.sql` gỡ chính sách tải ảnh tạm thời; chính sách này đã được gỡ khỏi dự án sau khi nạp ảnh.
 
-Các tệp `database/temporary-upload.sql` và `database/finalize.sql` lưu lại quy trình nạp ảnh. Tệp đầu tiên chỉ dùng trong thời gian tải ảnh; sau khi tải xong phải áp dụng `finalize.sql` để gỡ quyền INSERT nặc danh. Quyền này đã được gỡ khỏi dự án sau khi hoàn tất nạp ảnh.
+Các ảnh không được lưu trong GitHub vì website đọc ảnh từ bucket Supabase. Một số ảnh minh họa, bản đồ nhúng, biểu tượng và thư viện giao diện trong HTML gốc vẫn tải từ các địa chỉ bên ngoài.
 
-Để chạy bản sao khác:
+## Gói miễn phí
 
-1. Áp dụng `database/setup.sql` trong Supabase SQL Editor.
-2. Áp dụng `database/temporary-upload.sql` tạm thời; tải tất cả 28 tệp trong `assets/` lên bucket `goc-ctu-assets` với đúng tên tệp.
-3. Ngay khi tải xong, áp dụng `database/finalize.sql`.
-4. Cập nhật URL/key publishable trong `app-supabase.js` nếu dùng dự án Supabase khác.
+GitHub Pages và Supabase Free không tính phí khi dùng trong hạn mức hiện hành. Supabase có giới hạn dung lượng và lưu lượng; dự án Free có thể tự tạm dừng sau thời gian dài ít hoạt động. Vì thế không có lượng người dùng/lưu lượng không giới hạn được bảo đảm miễn phí.
 
-## Giới hạn của bản ZIP
+- [GitHub Pages trên GitHub Free](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages)
+- [Giá Supabase](https://supabase.com/pricing)
+- [Chính sách tạm dừng dự án Supabase Free](https://supabase.com/docs/guides/platform/free-project-pausing)
 
-Trang giữ phần điều hướng và sơ đồ trong HTML gốc. Các nội dung và ảnh nằm trong gói được đưa vào Supabase; một số ảnh minh họa, biểu tượng, bản đồ nhúng và thư viện CSS/JS của trang gốc vẫn tải từ các địa chỉ bên ngoài. Hãy kiểm tra lại nội dung/ảnh và quyền sử dụng trước khi quảng bá rộng.
+## Giới hạn nội dung
 
+Trang giữ cấu trúc và sơ đồ trong HTML gốc. Một số bản đồ nhúng, ảnh minh họa và thư viện giao diện vẫn đến từ dịch vụ bên ngoài. Hãy kiểm tra quyền sử dụng các nội dung đó trước khi quảng bá rộng.
