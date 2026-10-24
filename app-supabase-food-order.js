@@ -137,20 +137,33 @@
       window.GOC_CTU_PUBLIC_DATA.assets = Object.fromEntries(assetsResult.data.map((row) => [row.asset_key, row.public_url]));
     }
     if (placesResult.data?.length) {
-      const eatingOrder = new Map([
-        ['tiem-tra-nha-cuu', 0],
-        ['tra-sua-oanh-ole', 1],
-        ['bun-dau-mam-tom-2-dung', 2],
-        ['pho-co-ngan', 3],
-        ['com-tam-cay-khe', 4],
-        ['com-ga-chi-bay', 5]
+      const categoryOrders = new Map([
+        ['Ăn uống', new Map([
+          ['tiem-tra-nha-cuu', 0],
+          ['tra-sua-oanh-ole', 1],
+          ['bun-dau-mam-tom-2-dung', 2],
+          ['pho-co-ngan', 3],
+          ['com-tam-cay-khe', 4],
+          ['com-ga-chi-bay', 5]
+        ])],
+        ['Mua sắm', new Map([
+          ['momo-nguyen-thao', 0],
+          ['lam-thao', 1],
+          ['nha-sach-thiet-bi-giao-duc-can-tho', 2],
+          ['nha-sach-fahasa', 3],
+          ['bach-hoa-xanh', 4],
+          ['sieu-thi-go', 5]
+        ])]
       ]);
       const sortedPlaces = [...placesResult.data].sort((a, b) => {
-        if (a.category === 'Ăn uống' && b.category === 'Ăn uống') {
-          const aOrder = eatingOrder.get(a.id);
-          const bOrder = eatingOrder.get(b.id);
-          if (aOrder !== undefined || bOrder !== undefined) {
-            return (aOrder ?? Number.MAX_SAFE_INTEGER) - (bOrder ?? Number.MAX_SAFE_INTEGER);
+        if (a.category === b.category) {
+          const order = categoryOrders.get(a.category);
+          if (order) {
+            const aOrder = order.get(a.id);
+            const bOrder = order.get(b.id);
+            if (aOrder !== undefined || bOrder !== undefined) {
+              return (aOrder ?? Number.MAX_SAFE_INTEGER) - (bOrder ?? Number.MAX_SAFE_INTEGER);
+            }
           }
         }
         return String(a.name || '').localeCompare(String(b.name || ''), 'vi');
