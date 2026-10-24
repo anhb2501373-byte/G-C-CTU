@@ -902,6 +902,7 @@ draw();
 &lt;/body&gt;
 &lt;/html&gt;"></iframe></div>
 <div class="campus-map-frame" id="otherBuildingDiagramHost" style="display:none;"><img alt="Sơ đồ khu học được lọc theo dãy nhà" class="campus-plan-image" id="filteredRoomDiagramImage" loading="lazy"/></div>
+<div class="room-diagram-gallery" id="roomDiagramGallery" style="display:none;"></div>
 <p class="small muted mt-2" id="filteredRoomDiagramCaption" style="display:none"></p><div class="small mt-2" id="filteredRoomDiagramNote" style="display:none"></div>
 </div>
 </div><div class="card mb-3"><div class="card-body">
@@ -1618,6 +1619,7 @@ connectFinance();
     const roomQuery = /^[a-z0-9]+\s*[- /]?\s*\d{1,4}$/i.test(input) ||
       /^\d{1,4}\s*[- /]?\s*[a-z0-9]+$/i.test(input) ||
       Object.keys(specialRoomCodes || {}).some(code => code.replace(/\s+/g, '').toLocaleLowerCase('vi-VN') === input.replace(/[\s-]+/g, '').toLocaleLowerCase('vi-VN')) ||
+      Object.keys(roomBuildingNames || {}).some(code => code.replace(/[\s\-_\/]/g, '').toLocaleLowerCase('vi-VN') === input.replace(/[\s\-_\/]/g, '').toLocaleLowerCase('vi-VN')) ||
       /^(sta(10|701|702|703|704|705|712|801|ht1)|tt\d{2}[a-z]{2}|tt[a-z]{2}\d{2}|ttqp\d+|\d{3,4}t2)$/i.test(input.replace(/[\s-]+/g, ''));
 
     if (roomQuery || /phòng/.test(q)) {
@@ -1682,6 +1684,10 @@ connectFinance();
     if (normalizedSpecial) {
       description = specialRoomCodes[normalizedSpecial];
       code = normalizedSpecial;
+    } else if (roomBuildingNames[specialKey]) {
+      building = specialKey;
+      description = roomBuildingNames[building];
+      code = building;
     } else {
       // Chấp nhận B1-203, B1 203, 203 B1, 203/B1; chuẩn hóa kết quả theo số phòng + ký hiệu dãy.
       let m = raw.match(/^([A-Z0-9]+)\s*[- /]\s*(\d{1,4})$/);
@@ -1719,10 +1725,12 @@ connectFinance();
       if (room && /^\d{3}$/.test(room)) floor = Number(room.charAt(0));
       else if (room && /^\d{4}$/.test(room)) floor = Number(room.slice(0, 2));
       const items = [];
-      if (building && room) {
+      if (building) {
         items.push(['Nhà học', description]);
-        items.push(['Số phòng', room]);
-        if (floor !== null) items.push(['Tầng', String(floor)]);
+        if (room) {
+          items.push(['Số phòng', room]);
+          if (floor !== null) items.push(['Tầng', String(floor)]);
+        }
         items.push(['Gợi ý nhà xe', 'Bãi xe ' + building]);
         updateDirectionsBuilding(building);
       } else {
@@ -1800,20 +1808,24 @@ connectFinance();
     const a3Host = document.getElementById('a3DiagramHost');
     const c1Host = document.getElementById('c1DiagramHost');
     let building = '';
+    let requestedFloor = null;
     if (!isA3) {
       // Nhận diện mã phòng dù người dùng nhập B1-203, B1 203, B1/203,
       // 203-B1 hoặc 203 B1; không làm thay đổi bộ phân tích của searchRoom().
+      const exactCode = raw.replace(/[\s\-_\/]/g, '');
+      if (roomBuildingNames[exactCode]) building = exactCode;
+      const floorFromRoom = digits => digits.length === 3 ? Number(digits.charAt(0)) : digits.length === 4 ? Number(digits.slice(0, 2)) : null;
       let m = raw.match(/^([A-Z0-9]+)\s*[- /]?\s*(\d{1,4})$/);
-      if (m && roomBuildingNames[m[1]]) building = m[1];
+      if (!building && m && roomBuildingNames[m[1]]) { building = m[1]; requestedFloor = floorFromRoom(m[2]); }
       if (!building) {
         m = raw.match(/^(\d{1,4})\s*[- /]?\s*([A-Z0-9]+)$/);
-        if (m && roomBuildingNames[m[2]]) building = m[2];
+        if (m && roomBuildingNames[m[2]]) { building = m[2]; requestedFloor = floorFromRoom(m[1]); }
       }
       if (!building) {
         const compact = raw.replace(/[\s-_/]/g, '');
         for (const key of Object.keys(roomBuildingNames).sort((a,b) => b.length-a.length)) {
-          if (compact.startsWith(key) && /^\d{1,4}$/.test(compact.slice(key.length))) { building = key; break; }
-          if (compact.endsWith(key) && /^\d{1,4}$/.test(compact.slice(0, -key.length))) { building = key; break; }
+          if (compact.startsWith(key) && /^\d{1,4}$/.test(compact.slice(key.length))) { building = key; requestedFloor = floorFromRoom(compact.slice(key.length)); break; }
+          if (compact.endsWith(key) && /^\d{1,4}$/.test(compact.slice(0, -key.length))) { building = key; requestedFloor = floorFromRoom(compact.slice(0, -key.length)); break; }
         }
       }
     }
@@ -1825,7 +1837,7 @@ connectFinance();
       if (title) title.textContent = 'Sơ đồ phòng học Nhà học A3';
       syncA3IndoorRoute();
     } else if (building) {
-      updateRoomDiagram(building);
+      updateRoomDiagram(building, requestedFloor);
       if (building === 'B1') syncB1IndoorRoute();
       if (building === 'KH') syncKHIndoorRoute();
       if (building === 'C1') syncC1IndoorRoute();
@@ -1834,6 +1846,10 @@ connectFinance();
       clearC1IndoorRoute();
     }
   }
+  window.GOC_CTU_RECHECK_ROOM_MAP = () => {
+    const card = document.getElementById('filteredRoomDiagramCard');
+    if (card && card.style.display !== 'none') toggleA3IndoorDirections();
+  };
   function syncB1IndoorRoute() {
     const frame = document.getElementById('b1IndoorDirectionsFrame');
     const search = document.getElementById('roomSearch');
@@ -2047,7 +2063,7 @@ connectFinance();
     if (buttonText) buttonText.textContent = 'Dẫn đường đến dãy nhà ' + selectedBuilding;
     // Keep destination routing independent from the indoor room diagram.
   }
-  function updateRoomDiagram(building) {
+  function updateRoomDiagram(building, requestedFloor = null) {
     const title = document.getElementById('filteredRoomDiagramTitle');
     const image = document.getElementById('filteredRoomDiagramImage');
     const caption = document.getElementById('filteredRoomDiagramCaption');
@@ -2057,6 +2073,7 @@ connectFinance();
     const khHost = document.getElementById('khDiagramHost');
     const c1Host = document.getElementById('c1DiagramHost');
     const otherHost = document.getElementById('otherBuildingDiagramHost');
+    const gallery = document.getElementById('roomDiagramGallery');
     const sourceImage = document.querySelector('#screen-map .campus-plan-image:not(#filteredRoomDiagramImage)');
     if (title) title.textContent = 'Sơ đồ phòng học — ' + (roomBuildingNames[building] || ('Dãy nhà ' + building));
     const isA3 = building === 'A3';
@@ -2070,15 +2087,58 @@ connectFinance();
     if (otherHost) otherHost.style.display = (!isA3 && !isB1 && !isKH && !isC1) ? 'block' : 'none';
     if (caption) caption.style.display = 'none';
     if (note) note.style.display = 'none';
+    if (gallery) { gallery.replaceChildren(); gallery.style.display = 'none'; }
     if (isKH) syncKHIndoorRoute();
     if (isC1) syncC1IndoorRoute();
     if (!isA3 && !isB1 && !isKH && !isC1) {
-      const diagram = roomDiagramImages[building];
+      const rows = (window.GOC_CTU_PUBLIC_DATA?.rooms || []).filter(row => {
+        const rowCode = String(row.roomCode || '').toUpperCase();
+        const match = rowCode.match(/^(.+?)(?:-F(\d+))?$/);
+        return match && match[1] === building && row.roomMapUrl;
+      });
+      const floorOf = row => {
+        if (row.floor !== null && row.floor !== undefined) return Number(row.floor);
+        const match = String(row.roomCode || '').toUpperCase().match(/-F(\d+)$/);
+        return match ? Number(match[1]) : null;
+      };
+      const floorRows = rows.filter(row => floorOf(row) !== null).sort((a, b) => floorOf(a) - floorOf(b));
+      const buildingRow = rows.find(row => String(row.roomCode || '').toUpperCase() === building);
+      const exactFloorRow = requestedFloor === null ? null : floorRows.find(row => floorOf(row) === requestedFloor);
+      const useGallery = floorRows.length > 1 && (requestedFloor === null || !exactFloorRow);
       const fallbackSrc = sourceImage ? (sourceImage.currentSrc || sourceImage.src || sourceImage.getAttribute('src') || '') : '';
-      if (image) {
-        image.src = diagram || fallbackSrc;
-        image.style.display = image.src ? 'block' : 'none';
-        image.alt = diagram ? 'Sơ đồ phòng học ' + building : 'Sơ đồ khu học tổng thể tham khảo cho ' + building;
+      if (useGallery && gallery) {
+        if (image) image.style.display = 'none';
+        gallery.style.display = 'grid';
+        gallery.style.gridTemplateColumns = 'repeat(auto-fit, minmax(240px, 1fr))';
+        gallery.style.gap = '12px';
+        if (title) title.textContent = 'Sơ đồ phòng học — ' + (roomBuildingNames[building] || ('Dãy nhà ' + building)) + ' · các tầng';
+        floorRows.forEach(row => {
+          const figure = document.createElement('figure');
+          figure.className = 'm-0 p-2 bg-white rounded-3';
+          const captionNode = document.createElement('figcaption');
+          const floor = floorOf(row);
+          captionNode.className = 'small fw-semibold mb-2';
+          captionNode.textContent = floor === 0 ? 'Tầng trệt' : 'Tầng ' + floor;
+          const imageNode = document.createElement('img');
+          imageNode.src = row.roomMapUrl;
+          imageNode.alt = 'Sơ đồ ' + building + ' — ' + captionNode.textContent;
+          imageNode.loading = 'lazy';
+          imageNode.style.cssText = 'display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:8px';
+          figure.append(captionNode, imageNode);
+          gallery.append(figure);
+        });
+      } else {
+        const selectedRow = exactFloorRow || buildingRow || floorRows[0];
+        const diagram = selectedRow?.roomMapUrl || roomDiagramImages[building];
+        if (title && selectedRow && floorOf(selectedRow) !== null) {
+          const floor = floorOf(selectedRow);
+          title.textContent = 'Sơ đồ phòng học — ' + (roomBuildingNames[building] || ('Dãy nhà ' + building)) + (floor === 0 ? ' · tầng trệt' : ' · tầng ' + floor);
+        }
+        if (image) {
+          image.src = diagram || fallbackSrc;
+          image.style.display = image.src ? 'block' : 'none';
+          image.alt = diagram ? 'Sơ đồ phòng học ' + building : 'Sơ đồ khu học tổng thể tham khảo cho ' + building;
+        }
       }
     }
   }
