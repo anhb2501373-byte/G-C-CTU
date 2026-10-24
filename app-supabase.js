@@ -137,8 +137,26 @@
       window.GOC_CTU_PUBLIC_DATA.assets = Object.fromEntries(assetsResult.data.map((row) => [row.asset_key, row.public_url]));
     }
     if (placesResult.data?.length) {
-      window.GOC_CTU_PUBLIC_DATA.places = placesResult.data;
-      renderDirectory(placesResult.data);
+      const eatingOrder = new Map([
+        ['tiem-tra-nha-cuu', 0],
+        ['tra-sua-oanh-ole', 1],
+        ['bun-dau-mam-tom-2-dung', 2],
+        ['pho-co-ngan', 3],
+        ['com-tam-cay-khe', 4],
+        ['com-ga-chi-bay', 5]
+      ]);
+      const sortedPlaces = [...placesResult.data].sort((a, b) => {
+        if (a.category === 'Ăn uống' && b.category === 'Ăn uống') {
+          const aOrder = eatingOrder.get(a.id);
+          const bOrder = eatingOrder.get(b.id);
+          if (aOrder !== undefined || bOrder !== undefined) {
+            return (aOrder ?? Number.MAX_SAFE_INTEGER) - (bOrder ?? Number.MAX_SAFE_INTEGER);
+          }
+        }
+        return String(a.name || '').localeCompare(String(b.name || ''), 'vi');
+      });
+      window.GOC_CTU_PUBLIC_DATA.places = sortedPlaces;
+      renderDirectory(sortedPlaces);
     } else if (placesResult.error) {
       status('Không tải được danh mục trực tuyến; đang hiển thị nội dung có sẵn.', true);
     } else {
