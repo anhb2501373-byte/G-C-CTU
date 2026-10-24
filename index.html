@@ -1736,7 +1736,15 @@ connectFinance();
           items.push(['Số phòng', room]);
           if (floor !== null) items.push(['Tầng', String(floor)]);
         }
-        items.push(['Gợi ý nhà xe', 'Bãi xe ' + building]);
+        const roomRows = window.GOC_CTU_PUBLIC_DATA?.rooms || [];
+        const roomKey = room ? building + '-' + room : '';
+        const roomParking = roomKey
+          ? roomRows.find(row => String(row.roomCode || '').toUpperCase() === roomKey && row.parking)
+          : null;
+        const buildingParking = roomRows.find(row =>
+          String(row.roomCode || '').toUpperCase().startsWith(building + '-') && row.parking
+        );
+        items.push(['Gợi ý nhà xe', roomParking?.parking || buildingParking?.parking || ('Bãi xe ' + building)]);
         updateDirectionsBuilding(building);
       } else {
         items.push(['Ký hiệu', code]);
@@ -1854,6 +1862,10 @@ connectFinance();
   window.GOC_CTU_RECHECK_ROOM_MAP = () => {
     const card = document.getElementById('filteredRoomDiagramCard');
     if (card && card.style.display !== 'none') toggleA3IndoorDirections();
+  };
+  window.GOC_CTU_RECHECK_ROOM_RESULT = () => {
+    const search = document.getElementById('roomSearch');
+    if (search?.value.trim()) searchRoom();
   };
   function syncB1IndoorRoute() {
     const frame = document.getElementById('b1IndoorDirectionsFrame');
